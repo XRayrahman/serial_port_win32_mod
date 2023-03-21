@@ -427,7 +427,7 @@ class SerialPort {
   /// if you write "hello" in String, device will get "hello\0" with "\0" automatically.
   /// changed to not receive ANSI code
   bool writeBytesFromString(String buffer) {
-    final lpBuffer = buffer;
+    final lpBuffer = buffer.toNativeUtf16;
     final lpNumberOfBytesWritten = calloc<DWORD>();
     try {
       if (WriteFile(handler!, lpBuffer, lpBuffer.length + 1,
